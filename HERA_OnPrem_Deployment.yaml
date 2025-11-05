@@ -36,6 +36,8 @@ data:
     artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.serverName=192.168.20.66
     artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.transactionType=LOCAL_TRANSACTION
     artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.user=spor
+    artNotification.DGHR_Legacy.dghr.umConfiguration.newInsertSubstance.notificationEnabled=true
+    artNotification.DGHR_Legacy.dghr.umConfiguration.newUpdateSubstance.notificationEnabled=true
 
     messaging.IS_UM_CONNECTION.url=nsp\://um.iwhi-infra\:9000
     messaging.IS_UM_CONNECTION.default=true
