@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: application-properties-is
+  name: application-properties-onprem-is
   namespace: "iwhi-infra"
 data:
   application.properties: |
@@ -80,7 +80,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: application-properties-is
+            name: application-properties-onprem-is
   replicas: 1
 ---
 apiVersion: v1

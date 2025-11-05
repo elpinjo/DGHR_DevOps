@@ -20,9 +20,9 @@ RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CR
 RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_Datamodels
 RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_Datalake
 RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/BjornSkanberg1 DGHR_Hybrid
-#RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/BjornSkanberg1 DGHR_Legacy
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/BjornSkanberg1 DGHR_Legacy
 RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/BjornSkanberg1 DGHR_Survey
-ADD --chown=1724:1724 https://jdbc.postgresql.org/download/postgresql-42.7.8.jar /opt/softwareag/IntegrationServer/lib/jars/custom/
-ADD --chown=1724:1724 https://download.oracle.com/otn-pub/otn_software/jdbc/239/ojdbc17.jar /opt/softwareag/IntegrationServer/lib/jars/custom/
+ADD --chown=1724:1724 lib/postgresql-42.7.6.jar /opt/softwareag/IntegrationServer/lib/jars/custom/
+#ADD --chown=1724:1724 https://download.oracle.com/otn-pub/otn_software/jdbc/239/ojdbc17.jar /opt/softwareag/IntegrationServer/lib/jars/custom/
 
 WORKDIR /
