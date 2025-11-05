@@ -1,0 +1,28 @@
+ARG EDGE_VERSION
+
+FROM ibmwebmethods.azurecr.io/webmethods-microservicesruntime:11.1.0.5
+#FROM iwhicr.azurecr.io/webmethods-edge-runtime:${EDGE_VERSION}
+
+ARG WPM_CRED
+ARG GITHUB_CREDS_USR
+ARG GITHUB_CREDS_PSW
+
+WORKDIR /opt/softwareag/wpm
+
+ENV PATH=/opt/softwareag/wpm/bin:$PATH
+
+RUN /opt/softwareag/wpm/bin/wpm.sh install -ws https://packages.webmethods.io -wr licensed -d /opt/softwareag/IntegrationServer -j ${WPM_CRED} WmJDBCAdapter:v10.3.3.20
+#RUN /opt/softwareag/wpm/bin/wpm.sh install -ws https://packages.webmethods.io -wr supported -d /opt/softwareag/IntegrationServer -j ${WPM_CRED} WmE2EMIntegrationAgent
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_Eurostat
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_Files
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_Orchestration
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_EMA
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_Datamodels
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/elpinjo DGHR_Datalake
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/BjornSkanberg1 DGHR_Hybrid
+#RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/BjornSkanberg1 DGHR_Legacy
+RUN /opt/softwareag/wpm/bin/wpm.sh install -u ${GITHUB_CREDS_USR} -p ${GITHUB_CREDS_PSW} -d /opt/softwareag/IntegrationServer -r https://github.com/BjornSkanberg1 DGHR_Survey
+ADD --chown=1724:1724 lib/postgresql-42.7.6.jar /opt/softwareag/IntegrationServer/lib/jars/custom/
+ADD --chown=1724:1724 https://download.oracle.com/otn-pub/otn_software/jdbc/239/ojdbc17.jar /opt/softwareag/IntegrationServer/lib/jars/custom/
+
+WORKDIR /

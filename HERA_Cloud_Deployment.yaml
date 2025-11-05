@@ -1,0 +1,147 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-properties-is
+  namespace: "iwhi-infra"
+data:
+  application.properties: |
+    healthindicators.Adapters.enabled=true
+    healthindicators.Cluster.enabled=true
+    healthindicators.Cluster.properties.threshold.value=2
+    healthindicators.Diskspace.enabled=true
+    healthindicators.Diskspace.properties.threshold.value=10
+    healthindicators.JDBC.enabled=true
+    healthindicators.JMS.enabled=true
+    healthindicators.JNDIAliases.enabled=false
+    healthindicators.Memory.enabled=true
+    healthindicators.Memory.properties.threshold.value=10
+    healthindicators.RemoteServers.enabled=true
+    healthindicators.SFTPServers.enabled=true
+    healthindicators.ServiceThread.enabled=true
+    healthindicators.ServiceThread.properties.threshold.value=10
+    healthindicators.Sessions.enabled=true
+    healthindicators.Sessions.properties.threshold.value=85
+    healthindicators.UMAliases.enabled=true
+
+    globalvariable.Default_Truststore.value=DEFAULT_JVM_TRUSTSTORE
+    globalvariable.DGHR_EMA.SPOR_PASSWORD.isSecure=true
+    globalvariable.DGHR_EMA.SPOR_PASSWORD.value={AES}I39C+vZNs5yXJmaJ9WvyzQ==
+    globalvariable.DGHR_EMA.SPOR_USERNAME.value=heuveling_m1
+    globalvariable.DGHR_Orchestration.AZURE_SAS_TOKEN.isSecure=true
+    globalvariable.DGHR_Orchestration.AZURE_SAS_TOKEN.value={AES}VRDzgue7C20mDOSjMwOB0swELUMLf74mDnu/gsVRBmc7TXEc2lli9E+yeia4AiLUaPuYr9H2Dqrf40KK3swLor0w6Eljae9ML1I11G8e+Vu2n2A3VimliKJ0IZ0aAq1nGp45JJbD0Nuf5VyuWHSUaxi3w/E3ROM5G24nzLGitIGcrZDy/PJc/o/jzTCe64JQhK6lPO5saikzk/ROiL5twQ==
+
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionEnabled=true
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.datasourceClass=org.postgresql.ds.PGConnectionPoolDataSource
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.driverType=Default
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.user=postgres
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.password={AES}XIDzrZwOpNqmOfOjCm/zOetMCFu9C6x7tEOMP52Dv6hfZp1qHfdDwVT3OtEZJD0uAHsFDl/1gVbVybsUFT5yc2mK1wuN3U1rA1B0VhuZoUw=
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.serverName=192.168.25.8
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.portNumber=5432
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.databaseName=article57
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.otherProperties=
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.networkProtocol=
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionSettings.transactionType=LOCAL_TRANSACTION
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.startupBackoffSecs=10
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.heartBeatInterval=0
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.poolable=true
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.poolIncrementSize=1
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.startupRetryCount=0
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.maximumPoolSize=10
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.expireTimeout=1000
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.minimumPoolSize=1
+    artConnection.DGHR_EMA.dghr.ema.article57.database.Article57.connectionManagerSettings.blockingTimeout=1000
+
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionEnabled=true
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.datasourceClass=org.postgresql.ds.PGConnectionPoolDataSource
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.driverType=Default
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.user=postgres
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.password={AES}XIDzrZwOpNqmOfOjCm/zOetMCFu9C6x7tEOMP52Dv6hfZp1qHfdDwVT3OtEZJD0uAHsFDl/1gVbVybsUFT5yc2mK1wuN3U1rA1B0VhuZoUw=
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.serverName=192.168.25.8
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.portNumber=5432
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.databaseName=incidents
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.otherProperties=
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.networkProtocol=
+    artConnection.DGHR_Files.dghr.files.database.filesDB.connectionSettings.transactionType=LOCAL_TRANSACTION
+
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionEnabled=true
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.databaseName=
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.datasourceClass=oracle.jdbc.pool.OracleDataSource
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.driverType=Default
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.networkProtocol=
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.otherProperties=driverType\=thin;serviceName\=XEPDB1
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.password={AES}PTWq2hgg4RimZ8H0r79NmA==
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.portNumber=1521
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.serverName=host.docker.internal
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.transactionType=LOCAL_TRANSACTION
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.user=spor
+
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionEnabled=true
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.databaseName=survey
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.datasourceClass=org.postgresql.ds.PGSimpleDataSource
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.networkProtocol=
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.otherProperties=
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.password={AES}XIDzrZwOpNqmOfOjCm/zOetMCFu9C6x7tEOMP52Dv6hfZp1qHfdDwVT3OtEZJD0uAHsFDl/1gVbVybsUFT5yc2mK1wuN3U1rA1B0VhuZoUw=
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.portNumber=5432
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.serverName=192.168.25.8
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.transactionType=LOCAL_TRANSACTION
+    artConnection.DGHR_Survey.dghr.sourceConnector.surveyDbConnection.connectionSettings.user=postgres
+
+    messaging.IS_UM_CONNECTION.url=nsp\://um.iwhi-infra\:9000
+    messaging.IS_UM_CONNECTION.default=true
+    messaging.IS_UM_CONNECTION.type=UM
+    messaging.IS_UM_CONNECTION.enabled=true
+    messaging.IS_UM_CONNECTION.description=Default UM Connection
+    messaging.IS_UM_CONNECTION.useCSQ=true
+    messaging.AWS_Mocked_UM.url=nsp\://um.iwhi-infra\:9000
+    messaging.AWS_Mocked_UM.type=UM
+    messaging.AWS_Mocked_UM.enabled=true
+    settings.watt.server.scheduler.ignoreReferenceValidationErrors=true
+---
+kind: "Deployment"
+apiVersion: "apps/v1"
+metadata:
+  name: "hera-cloud"
+  namespace: "iwhi-infra"
+  labels:
+    app: "hera-cloud"
+spec:
+  selector:
+    matchLabels:
+      app: "hera-cloud" 
+  template: 
+    metadata:
+      labels:
+        app: "hera-cloud"
+    spec:
+      containers:
+        - name: "hera-cloud"
+          image: "ghcr.io/elpinjo/hera-cloud:latest"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5555
+              name: "admin-port"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/swagmsr/config
+          env:
+            - name: "SAG_IS_CONFIG_PROPERTIES"
+              value: "/opt/swagmsr/config/application.properties"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: application-properties-is
+  replicas: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "hera-cloud-is"
+  namespace: "iwhi-infra"
+spec: 
+  ports:
+    - name: is-port
+      port: 80
+      targetPort: "admin-port"
+  selector:
+    app: "hera-cloud"
+  type: LoadBalancer
