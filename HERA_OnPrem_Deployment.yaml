@@ -1,0 +1,98 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-properties-is
+  namespace: "iwhi-infra"
+data:
+  application.properties: |
+    healthindicators.Adapters.enabled=true
+    healthindicators.Cluster.enabled=true
+    healthindicators.Cluster.properties.threshold.value=2
+    healthindicators.Diskspace.enabled=true
+    healthindicators.Diskspace.properties.threshold.value=10
+    healthindicators.JDBC.enabled=true
+    healthindicators.JMS.enabled=true
+    healthindicators.JNDIAliases.enabled=false
+    healthindicators.Memory.enabled=true
+    healthindicators.Memory.properties.threshold.value=10
+    healthindicators.RemoteServers.enabled=true
+    healthindicators.SFTPServers.enabled=true
+    healthindicators.ServiceThread.enabled=true
+    healthindicators.ServiceThread.properties.threshold.value=10
+    healthindicators.Sessions.enabled=true
+    healthindicators.Sessions.properties.threshold.value=85
+    healthindicators.UMAliases.enabled=true
+
+    globalvariable.Default_Truststore.value=DEFAULT_JVM_TRUSTSTORE
+    
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionEnabled=true
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.databaseName=
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.datasourceClass=oracle.jdbc.pool.OracleDataSource
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.driverType=Default
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.networkProtocol=
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.otherProperties=driverType\=thin;serviceName\=XEPDB1
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.password={AES}PTWq2hgg4RimZ8H0r79NmA==
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.portNumber=1521
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.serverName=192.168.20.66
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.transactionType=LOCAL_TRANSACTION
+    artConnection.DGHR_Legacy.dghr.sourceConnector.legacyDbConnection.connectionSettings.user=spor
+
+    messaging.IS_UM_CONNECTION.url=nsp\://um.iwhi-infra\:9000
+    messaging.IS_UM_CONNECTION.default=true
+    messaging.IS_UM_CONNECTION.type=UM
+    messaging.IS_UM_CONNECTION.enabled=true
+    messaging.IS_UM_CONNECTION.description=Default UM Connection
+    messaging.IS_UM_CONNECTION.useCSQ=true
+    messaging.AWS_Mocked_UM.url=nsp\://um.iwhi-infra\:9000
+    messaging.AWS_Mocked_UM.type=UM
+    messaging.AWS_Mocked_UM.enabled=true
+    settings.watt.server.scheduler.ignoreReferenceValidationErrors=true
+---
+kind: "Deployment"
+apiVersion: "apps/v1"
+metadata:
+  name: "hera-onprem"
+  namespace: "iwhi-infra"
+  labels:
+    app: "hera-onprem"
+spec:
+  selector:
+    matchLabels:
+      app: "hera-onprem" 
+  template: 
+    metadata:
+      labels:
+        app: "hera-onprem"
+    spec:
+      containers:
+        - name: "hera-onprem"
+          image: "ghcr.io/elpinjo/hera-onprem:latest"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5555
+              name: "admin-port"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/swagmsr/config
+          env:
+            - name: "SAG_IS_CONFIG_PROPERTIES"
+              value: "/opt/swagmsr/config/application.properties"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: application-properties-is
+  replicas: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "hera-onprem-is"
+  namespace: "iwhi-infra"
+spec: 
+  ports:
+    - name: is-port
+      port: 80
+      targetPort: "admin-port"
+  selector:
+    app: "hera-onprem"
+  type: LoadBalancer
