@@ -35,5 +35,5 @@ stages:
                 --build-arg GITHUB_CREDS_PSW=$GITHUB_CREDS_PSW \
                 -t $IMAGE \
                 .
-        env:
-          GITHUB_CREDS_PSW: $(GITHUB_CREDS_PSW)
+      env:
+        GITHUB_CREDS_PSW: $(GITHUB_CREDS_PSW)
