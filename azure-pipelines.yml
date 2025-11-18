@@ -25,11 +25,12 @@ stages:
       inputs:
         script: |
           buildah bud \
-                --tls-verify=$TLSVERIFY \
-                --build-arg EDGE_VERSION=$EDGE_VERSION \
-                --build-arg GITHUB_CREDS_USR=$GITHUB_CREDS_USR \
-                --build-arg GITHUB_CREDS_PSW=$GITHUB_CREDS_PSW \
-                -t $IMAGE \
-                .
+            --isolation=chroot \
+            --tls-verify=$TLSVERIFY \
+            --build-arg EDGE_VERSION=$EDGE_VERSION \
+            --build-arg GITHUB_CREDS_USR=$GITHUB_CREDS_USR \
+            --build-arg GITHUB_CREDS_PSW=$GITHUB_CREDS_PSW \
+            -t $IMAGE \
+            .
       env:
         GITHUB_CREDS_PSW: $(githubToken)
