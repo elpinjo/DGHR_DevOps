@@ -21,6 +21,11 @@ stages:
     pool:
       name: OpenShift
     steps:
+    - task: Docker@2
+      displayName: Docker Login
+      inputs:
+        command: login
+        containerRegistry: 'iwhicr'
     - task: CmdLine@2
       inputs:
         script: |
