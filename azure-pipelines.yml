@@ -11,6 +11,10 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  GITHUB_CREDS_USR: '$(GITHUB_CREDS_USR)'
+  EDGE_VERSION: '$(EDGE_VERSION)'
+  TLSVERIFY: '$(TLSVERIFY)'
+  IMAGE: '$(IMAGE)'
 
 stages:
 - stage: Build
@@ -19,15 +23,17 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      name: Default
+      name: OpenShift
     steps:
     - task: CmdLine@2
       inputs:
         script: |
           buildah bud \
-                --tls-verify=$(params.TLSVERIFY) \
+                --tls-verify=$TLSVERIFY \
                 --build-arg EDGE_VERSION=$EDGE_VERSION \
                 --build-arg GITHUB_CREDS_USR=$GITHUB_CREDS_USR \
                 --build-arg GITHUB_CREDS_PSW=$GITHUB_CREDS_PSW \
-                -t $(params.IMAGE) \
+                -t $IMAGE \
                 .
+        env:
+          GITHUB_CREDS_PSW: $(GITHUB_CREDS_PSW)
