@@ -11,10 +11,6 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  GITHUB_CREDS_USR: '$(GITHUB_CREDS_USR)'
-  EDGE_VERSION: '$(EDGE_VERSION)'
-  TLSVERIFY: '$(TLSVERIFY)'
-  IMAGE: '$(IMAGE)'
 
 stages:
 - stage: Build
@@ -36,4 +32,4 @@ stages:
                 -t $IMAGE \
                 .
       env:
-        GITHUB_CREDS_PSW: $(GITHUB_CREDS_PSW)
+        GITHUB_CREDS_PSW: $(githubToken)
