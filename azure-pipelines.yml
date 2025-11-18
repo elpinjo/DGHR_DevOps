@@ -25,7 +25,7 @@ stages:
       displayName: Docker Login
       inputs:
         command: login
-        containerRegistry: 'iwhicr'
+        containerRegistry: 'ibmwebmethods'
     - task: CmdLine@2
       inputs:
         script: |
