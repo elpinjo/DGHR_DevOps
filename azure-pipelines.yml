@@ -24,6 +24,7 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
+          cat /etc/subuid
           buildah bud \
             --isolation=chroot \
             --tls-verify=$TLSVERIFY \
