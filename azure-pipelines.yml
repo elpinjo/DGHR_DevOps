@@ -27,6 +27,7 @@ stages:
           cat /etc/subuid
           buildah bud \
             --isolation=chroot \
+            --net=host \
             --tls-verify=$TLSVERIFY \
             --build-arg EDGE_VERSION=$EDGE_VERSION \
             --build-arg GITHUB_CREDS_USR=$GITHUB_CREDS_USR \
